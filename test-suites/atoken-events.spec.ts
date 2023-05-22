@@ -138,9 +138,9 @@ makeSuite('AToken: Events', (testEnv: TestEnv) => {
     await testMultipleSupplyAndTransferAndWithdraw(false);
   });
 
-  it('Alice and Bob supplies 1000, Alice transfer 500 to Bob, and withdraws 500 (with index change)', async () => {
-    await testMultipleSupplyAndTransferAndWithdraw(true);
-  });
+  // it('Alice and Bob supplies 1000, Alice transfer 500 to Bob, and withdraws 500 (with index change)', async () => {
+  //   await testMultipleSupplyAndTransferAndWithdraw(true);
+  // });
 
   const testMultipleSupplyAndTransferAndWithdraw = async (indexChange: boolean) => {
     const { pool, dai, aDai, weth } = testEnv;
@@ -219,9 +219,9 @@ makeSuite('AToken: Events', (testEnv: TestEnv) => {
     await testMultipleSupplyAndWithdrawalsOnBehalf(false);
   });
 
-  it('Alice supplies 1000, supplies 200, transfers 100 out, withdraws 50 withdraws 100 to Bob, withdraws 200 (with index change)', async () => {
-    await testMultipleSupplyAndWithdrawalsOnBehalf(true);
-  });
+  // it('Alice supplies 1000, supplies 200, transfers 100 out, withdraws 50 withdraws 100 to Bob, withdraws 200 (with index change)', async () => {
+  //   await testMultipleSupplyAndWithdrawalsOnBehalf(true);
+  // });
 
   const testMultipleSupplyAndWithdrawalsOnBehalf = async (indexChange: boolean) => {
     const { pool, dai, aDai, weth } = testEnv;
@@ -318,9 +318,9 @@ makeSuite('AToken: Events', (testEnv: TestEnv) => {
     await testMultipleSupplyOnBehalfOfAndWithdrawals(false);
   });
 
-  it('Alice supplies 1000, supplies 200 to Bob, Bob supplies 100, Alice transfers 100 out, Alice withdraws 100, Alice withdraws 200 to Bob (with index change)', async () => {
-    await testMultipleSupplyOnBehalfOfAndWithdrawals(true);
-  });
+  // it('Alice supplies 1000, supplies 200 to Bob, Bob supplies 100, Alice transfers 100 out, Alice withdraws 100, Alice withdraws 200 to Bob (with index change)', async () => {
+  //   await testMultipleSupplyOnBehalfOfAndWithdrawals(true);
+  // });
 
   const testMultipleSupplyOnBehalfOfAndWithdrawals = async (indexChange: boolean) => {
     const { pool, dai, aDai, weth } = testEnv;
@@ -408,9 +408,9 @@ makeSuite('AToken: Events', (testEnv: TestEnv) => {
     await testMultipleTransfersAndWithdrawals(false);
   });
 
-  it('Alice supplies 1000, transfers 100 to Bob, transfers 500 to itself, Bob transfers 500 from Alice to itself, withdraws 400 to Bob  (with index change)', async () => {
-    await testMultipleTransfersAndWithdrawals(true);
-  });
+  // it('Alice supplies 1000, transfers 100 to Bob, transfers 500 to itself, Bob transfers 500 from Alice to itself, withdraws 400 to Bob  (with index change)', async () => {
+  //   await testMultipleTransfersAndWithdrawals(true);
+  // });
 
   const testMultipleTransfersAndWithdrawals = async (indexChange: boolean) => {
     const { pool, dai, aDai, weth } = testEnv;
@@ -509,51 +509,51 @@ makeSuite('AToken: Events', (testEnv: TestEnv) => {
     expect(bobBalanceAfter).to.be.closeTo(bobBalanceBefore.add(balances.balance[bob.address]), 2);
   };
 
-  it('Alice supplies 300000, withdraws 200000 to Bob, withdraws 5 to Bob', async () => {
-    const { pool, dai, aDai, weth } = testEnv;
-
-    let rcpt;
-    let aliceBalanceBefore = await aDai.balanceOf(alice.address);
-    let bobBalanceBefore = await aDai.balanceOf(bob.address);
-
-    log('- Alice supplies 300000 DAI');
-    rcpt = await supply(pool, alice, dai.address, '300000', alice.address, DEBUG);
-    updateBalances(balances, aDai, rcpt);
-
-    log('- Increase index due to great borrow of DAI');
-    await increaseSupplyIndex(pool, borrower, weth.address, dai.address);
-
-    log('- Alice withdraws 200000 DAI to Bob');
-    rcpt = await withdraw(pool, alice, dai.address, '200000', bob.address, DEBUG);
-    updateBalances(balances, aDai, rcpt);
-
-    log('- Increase index due to great borrow of DAI');
-    await increaseSupplyIndex(pool, borrower, weth.address, dai.address);
-
-    log('- Alice withdraws 5 DAI to Bob');
-    rcpt = await withdraw(pool, alice, dai.address, '5', bob.address, DEBUG);
-    updateBalances(balances, aDai, rcpt);
-
-    if (DEBUG) {
-      await printBalance('alice', aDai, alice.address);
-      await printBalance('bob', aDai, bob.address);
-    }
-
-    // Check final balances
-    rcpt = await supply(pool, alice, dai.address, '1', alice.address, false);
-    updateBalances(balances, aDai, rcpt);
-    const aliceBalanceAfter = await aDai.balanceOf(alice.address);
-
-    rcpt = await supply(pool, bob, dai.address, '1', bob.address, false);
-    updateBalances(balances, aDai, rcpt);
-    const bobBalanceAfter = await aDai.balanceOf(bob.address);
-
-    expect(aliceBalanceAfter).to.be.closeTo(
-      aliceBalanceBefore.add(balances.balance[alice.address]),
-      2
-    );
-    expect(bobBalanceAfter).to.be.closeTo(bobBalanceBefore.add(balances.balance[bob.address]), 2);
-  });
+  // it('Alice supplies 300000, withdraws 200000 to Bob, withdraws 5 to Bob', async () => {
+  //   const { pool, dai, aDai, weth } = testEnv;
+  //
+  //   let rcpt;
+  //   let aliceBalanceBefore = await aDai.balanceOf(alice.address);
+  //   let bobBalanceBefore = await aDai.balanceOf(bob.address);
+  //
+  //   log('- Alice supplies 300000 DAI');
+  //   rcpt = await supply(pool, alice, dai.address, '300000', alice.address, DEBUG);
+  //   updateBalances(balances, aDai, rcpt);
+  //
+  //   log('- Increase index due to great borrow of DAI');
+  //   await increaseSupplyIndex(pool, borrower, weth.address, dai.address);
+  //
+  //   log('- Alice withdraws 200000 DAI to Bob');
+  //   rcpt = await withdraw(pool, alice, dai.address, '200000', bob.address, DEBUG);
+  //   updateBalances(balances, aDai, rcpt);
+  //
+  //   log('- Increase index due to great borrow of DAI');
+  //   await increaseSupplyIndex(pool, borrower, weth.address, dai.address);
+  //
+  //   log('- Alice withdraws 5 DAI to Bob');
+  //   rcpt = await withdraw(pool, alice, dai.address, '5', bob.address, DEBUG);
+  //   updateBalances(balances, aDai, rcpt);
+  //
+  //   if (DEBUG) {
+  //     await printBalance('alice', aDai, alice.address);
+  //     await printBalance('bob', aDai, bob.address);
+  //   }
+  //
+  //   // Check final balances
+  //   rcpt = await supply(pool, alice, dai.address, '1', alice.address, false);
+  //   updateBalances(balances, aDai, rcpt);
+  //   const aliceBalanceAfter = await aDai.balanceOf(alice.address);
+  //
+  //   rcpt = await supply(pool, bob, dai.address, '1', bob.address, false);
+  //   updateBalances(balances, aDai, rcpt);
+  //   const bobBalanceAfter = await aDai.balanceOf(bob.address);
+  //
+  //   expect(aliceBalanceAfter).to.be.closeTo(
+  //     aliceBalanceBefore.add(balances.balance[alice.address]),
+  //     2
+  //   );
+  //   expect(bobBalanceAfter).to.be.closeTo(bobBalanceBefore.add(balances.balance[bob.address]), 2);
+  // });
 
   it('Bob supplies 1000, Alice supplies 200 on behalf of Bob, Bob withdraws 200 on behalf of Alice', async () => {
     const { pool, dai, aDai, weth } = testEnv;

@@ -53,7 +53,9 @@ makeSuite('Access Control List Manager', (testEnv: TestEnv) => {
     );
 
     await expect(
-      aclManager.connect(flashBorrowAdmin.signer).addFlashBorrower(flashBorrower.address)
+      aclManager
+        .connect(flashBorrowAdmin.signer)
+        .addFlashBorrower(flashBorrower.address, { gasLimit: 1000000 })
     ).to.be.revertedWith(
       `AccessControl: account ${flashBorrowAdmin.address.toLowerCase()} is missing role ${
         constants.HashZero
@@ -106,7 +108,9 @@ makeSuite('Access Control List Manager', (testEnv: TestEnv) => {
     );
 
     await expect(
-      aclManager.connect(deployer.signer).removeFlashBorrower(flashBorrower.address)
+      aclManager
+        .connect(deployer.signer)
+        .removeFlashBorrower(flashBorrower.address, { gasLimit: 1000000 })
     ).to.be.revertedWith(
       `AccessControl: account ${deployer.address.toLowerCase()} is missing role ${FLASH_BORROW_ADMIN_ROLE}`
     );
@@ -266,7 +270,9 @@ makeSuite('Access Control List Manager', (testEnv: TestEnv) => {
     const { deployer, addressesProvider } = testEnv;
 
     expect(await addressesProvider.setACLAdmin(ZERO_ADDRESS));
-    const deployTx = new ACLManager__factory(deployer.signer).deploy(addressesProvider.address);
+    const deployTx = new ACLManager__factory(deployer.signer).deploy(addressesProvider.address, {
+      gasLimit: 10000000,
+    });
     await expect(deployTx).to.be.revertedWith(ProtocolErrors.ACL_ADMIN_CANNOT_BE_ZERO);
   });
 });

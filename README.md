@@ -116,6 +116,7 @@ You can run the full test suite with the following commands:
 
 ```
 # In one terminal
+touch .env
 docker-compose up
 
 # Open another tab or terminal
@@ -124,3 +125,16 @@ docker-compose exec contracts-env bash
 # A new Bash terminal is prompted, connected to the container
 npm run test
 ```
+
+---
+
+## Current State for Devnet Tests
+
+- GasLimit is not automatically added
+- Revert Error Message is not properly formatted for hardhat tests: https://github.com/ethers-io/ethers.js/discussions/2849
+- First 65 tests are passing (+ test setup / contracts deployments etc)
+
+### Commented tests / files
+
+- test-suites/atoken-event-accounting.spec.ts (whole file)
+- test-suites/atoken-events.spec.ts (few tests)

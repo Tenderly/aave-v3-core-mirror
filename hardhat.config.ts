@@ -74,6 +74,13 @@ const hardhatConfig = {
         balance,
       })),
     },
+    devnet: {
+      url: 'http://host.docker.internal:11060/devnet/hardhat-test/ce8da16b-16e6-4bd9-b54d-9d5f6959c225',
+      hardfork: HARDFORK,
+      chainId: HARDHAT_CHAINID,
+      throwOnTransactionFailures: true,
+      throwOnCallFailures: true,
+    },
     ganache: {
       url: 'http://ganache:8545',
       accounts: {
