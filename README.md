@@ -124,6 +124,9 @@ docker-compose exec contracts-env bash
 
 # A new Bash terminal is prompted, connected to the container
 npm run test
+
+# To connect to devnet
+npm run test-devnet
 ```
 
 ---

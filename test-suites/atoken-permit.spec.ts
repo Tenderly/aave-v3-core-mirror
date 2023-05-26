@@ -121,7 +121,9 @@ makeSuite('AToken: Permit', (testEnv: TestEnv) => {
     expect(
       await aDai
         .connect(spender.signer)
-        .permit(owner.address, spender.address, permitAmount, deadline, v, r, s)
+        .permit(owner.address, spender.address, permitAmount, deadline, v, r, s, {
+          gasLimit: 1000000000,
+        })
     );
 
     expect((await aDai.nonces(owner.address)).toNumber()).to.be.equal(1);
